@@ -2,7 +2,7 @@
 #-----------------------------
 #Data Structures
 #List - ordered collection of items, mutable(changeable) : [square ]
-list1 = [1,2,3,4,5,'a','Dhiraj',"Upadhyaya",True]  #list type of object with data
+list1 = [1,2,3,4,5,'a','Manjesh','k',False]  #list type of object with data
 list1  #print when through spyder
 type(list1)  #type of object
 print(list1)  #print when running complete file
@@ -19,7 +19,7 @@ dir(list) #functions which can be operated on list type of DS
 sorted(list2)
 list2
 list2[2]  #index starts from 0,1,...
-list2[2] = 'Z'  #list is mutable, ie. values can be changed
+list2[2] = 'MA'  #list is mutable, ie. values can be changed
 list2
 #%%mutatble - changed, immutable- cannot be changed
 #tuple - multiple type of objects like list, immutable: ( round brackets) : no changes
@@ -28,12 +28,13 @@ tuple1
 type(tuple1)
 tuple1[1]
 tuple1[1] = 0  #changes not possible, immutable
-tuple1 = (5,45)
+tuple1 = (5,6,7,45)
 tuple1  #overwriting is possible
 #%%
 #Dictionary - key-value pairs : { curly bracket and colon key:value}
-dict1 = {1:'Ramesh', 2:'Suresh', 3:'Priyanka'}
+dict1 = {"1":'Ramesh', "2":'Suresh', "3":'Priyanka'}
 dict1
+dict1.get("1")
 type(dict1)
 
 car = { 'brand':'Honda', 'model': 'Jazz', 'year' : 2017}
@@ -73,7 +74,7 @@ set2.intersection(set3) #set2 & set
 
 type(set2)
 print(set2)
-dir(set2)  #functions in set, cannot be subscript set2[1]
+ dir(set2)  #functions in set, cannot be subscript set2[1]
 
 #%%%frozen ( round bracket, comma)
 #frozen set- accepts iterable object as input parameter.
@@ -96,13 +97,14 @@ frozenset2 #keys of dictionary made as frozen set
 #strings as text in string; immutable
 str1 = 'Python Programming'
 type(str1)
+str1
 print(str1)
 str2="Yash"
 str2.lower()
 dir(str)
 str2[1] = 'Z' #immutable , but new string can be assigned
-str2 = 'Dhiraj'
-str2
+str2 = 'Manjesh'
+str2.upper()
 
 #list, tuple, dictionary, set, strings.
 #%% - Sequence
@@ -110,18 +112,21 @@ str2
 list1 = [1,2,3,4,5]
 list2 = ['a','bb','ccc', 'dddd', 'eeeee']
 list1
+print(list1)
 #for loop : indentations with colon : Run next 2 lines together
-for i in list1:
+for i in list2:
     print(i)
 
   
 for i in list1:    print(i , end ='\t')
 print?  #help
-for i in list2:    print(i, 'DU' , sep='-' , end ='xxx')
+
+#print #select print and press ctrl+i for help
+for i in list2:    print(i, "DU",sep='-' ,  end ='xxx')
 #a-DU-xxx ; i+sep+end
-for i in list1:    print(i , 'HHHE', sep=' X ' , end ='\t')
+for i in list1:    print(i , 'HHHE', sep=' X ' , end ="\t")
 print?
-for i in list1:    print('Dhiraj ', i + 6)
+for i in list1:    print('Dhiraj ', i + 5)
 
 tuple1 = (1, 2, 'a', 'b')
 tuple1
@@ -130,9 +135,11 @@ list5
 for i in tuple1:    print(i, end ='\t')
 range?  # start, stop, step; does not take keyword
 range(1, 100, 2)  #nothing happens, though it generates 
-for i in range(1, 100, 2):    print(i, end=' ')
-
+for i in range(1, 100, 2):    print(i, end='\t')
 #odd nos between x & y    
+range(2, 100, 2)  #nothing happens, though it generates 
+for i in range(2, 100, 2):    print(i, end='\t')
+#even nos
 
 #%% do later
 #zip - map the similar index of multiple containers 
@@ -179,6 +186,8 @@ np.mean?  # help on mean function of numpy
 
 np2 = np.array([ 90, 50, 60, 70 ])
 np2
+np2.mean()
+np.mean(np2)
 np.sort(np2)
 dir(np)
 
@@ -196,8 +205,9 @@ np3.reshape((-1,1))  #1 column from 2 column
 import pandas as pd
 pd?
 dir(pd)
+help(pd)
 
-df1 = pd.DataFrame({'rollno':[1,2,3,4], 'name': [ "Dhiraj", "Kounal", "Akhil", "Pooja" ], 'marks':[ 40, 50, 60.5, 70 ], 'gender':['M', 'M','M', 'F']})
+df1 = pd.DataFrame({'rollno':[1,2,3,4], 'name': [ "Dhiraj", "Kounal", "Akhil", "Pooja" ], 'marks':[ 40, 50, 60.5, 40 ], 'gender':['M', 'M','M', 'F'],'course':['mba','ba','mba','ba'],'seq':np.arange(start=20,stop=24,step=1)})
 df1
 type(df1) 
 
@@ -209,7 +219,8 @@ df1.shape  # rows and columns
 df1.groupby('gender').size()
 df1.groupby('gender')['marks'].mean()
 df1.groupby('gender').aggregate({'marks': [np.mean, 'max','min','std','count']})
-
+df1.groupby('gender').aggregate({'marks': [np.mean, np.max,np.min,np.std]})
+df1.groupby(['gender','course']).aggregate({'marks': [np.mean, 'max','min','std','count']})
 #%% #Graphs https://python-graph-gallery.com/
 #https://matplotlib.org/
 
@@ -227,6 +238,7 @@ iris.head()
 iris.tail()
 df1.groupby('gender').size()
 iris.groupby('species').size().plot(kind='bar')
+iris.groupby('sepal_width').size().plot(kind='bar')
 sns.pairplot(iris)  #relationship diagrams
 
 
